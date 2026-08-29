@@ -1,0 +1,44 @@
+CONECTOR PORTATIL DO LAB  (acesso remoto ao Open WebUI da base)
+================================================================
+
+O que e:
+  Uma forma de acessar o Open WebUI que roda na sua maquina base,
+  a partir de QUALQUER computador, SEM instalar o Open WebUI la.
+  A base continua fazendo todo o trabalho; este conector so liga
+  o computador atual a sua rede privada Tailscale e abre o navegador.
+
+--------------------------------------------------------------
+OPCAO A (recomendada, confiavel) - instalar o Tailscale
+--------------------------------------------------------------
+  1) Baixe e instale o Tailscale: https://tailscale.com/download
+  2) Faca login na SUA conta Tailscale (a mesma da maquina base).
+  3) Abra no navegador:  https://desktop-ucgr4k4.tailcd6345.ts.net/
+     (ou clique em "Abrir Open WebUI" na pagina do portal)
+
+--------------------------------------------------------------
+OPCAO B (portatil, sem instalar) - este conector no USB
+--------------------------------------------------------------
+  Pre-requisito (uma vez): baixe os binarios do Tailscale para Windows
+  (versao estatica, amd64) em  https://pkgs.tailscale.com/stable/
+  -> extraia "tailscale.exe" e "tailscaled.exe" para a pasta:  bin\
+
+  Uso:
+  1) Plugue o USB e abra esta pasta.
+  2) De 2 cliques em  conectar.cmd
+     - Ele sobe o Tailscale em modo "userspace" (sem instalar/driver).
+     - Vai abrir o navegador pedindo login na sua conta Tailscale.
+     - Depois abre o Edge/Chrome ja apontado para o Open WebUI.
+  3) DEIXE a janela do conectar.cmd ABERTA enquanto usa o lab.
+  4) Ao terminar: rode  desconectar.cmd  (ou feche a janela).
+
+  Observacoes:
+  - O modo userspace no Windows e experimental; se der erro, use a Opcao A.
+  - Nada e instalado no computador; o estado fica na pasta state\ do USB.
+  - O acesso e PRIVADO (tailnet). O lab NAO fica exposto na internet.
+
+--------------------------------------------------------------
+SEGURANCA
+--------------------------------------------------------------
+  - Nao guarde chaves/tokens neste USB. O login e feito na hora, no navegador.
+  - Proteja o login do Open WebUI com senha forte.
+  - Se perder o USB, nenhum segredo vaza (nao ha credenciais aqui).

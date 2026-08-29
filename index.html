@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Meu Lab — Acesso Remoto</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --fg:#1a1d21; --muted:#5b6570; --line:#e3e7ec;
+    --accent:#2f6df6; --accent-fg:#ffffff; --ok:#12864f; --warn:#b26a00; --err:#c0392b;
+    --shadow:0 1px 3px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.06);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0e1116;--card:#161b22;--fg:#e6edf3;--muted:#9aa4af;--line:#232a33;
+      --accent:#4d84ff;--shadow:0 1px 3px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;padding:24px 16px 64px}
+  .wrap{max-width:760px;margin:0 auto}
+  header{display:flex;align-items:center;gap:12px;margin:12px 0 8px}
+  .logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7b3ff2);
+    display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:var(--shadow)}
+  h1{font-size:22px;margin:0}
+  .sub{color:var(--muted);font-size:14px;margin-top:2px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px;margin:18px 0;box-shadow:var(--shadow)}
+  .cta{display:block;text-align:center;text-decoration:none;background:var(--accent);
+    color:var(--accent-fg);font-weight:600;font-size:18px;padding:16px;border-radius:12px;
+    transition:transform .06s ease,filter .15s ease}
+  .cta:active{transform:translateY(1px)} .cta:hover{filter:brightness(1.06)}
+  .status{display:flex;align-items:center;gap:10px;font-size:14px;margin-top:14px;color:var(--muted)}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:0 0 auto}
+  .dot.ok{background:var(--ok)} .dot.err{background:var(--err)} .dot.chk{background:var(--warn);animation:p 1s infinite}
+  @keyframes p{50%{opacity:.35}}
+  h2{font-size:16px;margin:0 0 10px} h3{font-size:14px;margin:16px 0 6px}
+  ol,ul{margin:8px 0 0;padding-left:20px} li{margin:6px 0}
+  code,kbd{background:rgba(127,127,127,.16);padding:2px 6px;border-radius:6px;
+    font:13px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace}
+  pre{background:rgba(127,127,127,.12);border:1px solid var(--line);border-radius:10px;
+    padding:12px;overflow-x:auto;font:13px/1.5 ui-monospace,Consolas,monospace}
+  a{color:var(--accent)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .btn2{display:block;text-align:center;text-decoration:none;border:1px solid var(--line);
+    color:var(--fg);border-radius:10px;padding:12px;font-weight:500;background:transparent}
+  .btn2:hover{border-color:var(--accent);color:var(--accent)}
+  .note{font-size:13px;color:var(--muted)}
+  .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;
+    background:rgba(47,109,246,.12);color:var(--accent);margin-left:8px;vertical-align:middle}
+  footer{color:var(--muted);font-size:12px;text-align:center;margin-top:28px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">🛰️</div>
+    <div>
+      <h1>Meu Lab — Acesso Remoto</h1>
+      <div class="sub">Portal para o Open WebUI hospedado na sua máquina base</div>
+    </div>
+  </header>
+
+  <div class="card">
+    <a class="cta" id="openBtn" href="https://desktop-ucgr4k4.tailcd6345.ts.net/" target="_blank" rel="noopener">
+      Abrir Open WebUI &nbsp;↗
+    </a>
+    <div class="status">
+      <span class="dot chk" id="dot"></span>
+      <span id="statusText">Verificando conexão com a base…</span>
+    </div>
+    <p class="note" style="margin-top:14px">
+      O acesso é <b>privado via Tailscale</b>: só funciona quando <b>este dispositivo está na sua tailnet</b>.
+      Se o botão não abrir, conecte este computador primeiro (abaixo).
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Conectar um computador novo <span class="pill">1x por máquina</span></h2>
+    <p class="note">Duas formas — escolha a que couber na máquina onde você está.</p>
+
+    <h3>A) Instalando o Tailscale (recomendado)</h3>
+    <ol>
+      <li>Baixe em <a href="https://tailscale.com/download" target="_blank" rel="noopener">tailscale.com/download</a> e instale.</li>
+      <li>Faça login na <b>sua conta Tailscale</b> (a mesma da máquina base).</li>
+      <li>Volte aqui e clique em <b>Abrir Open WebUI</b>.</li>
+    </ol>
+
+    <h3>B) Conector portátil (sem instalar — pen drive)</h3>
+    <p class="note">Roda o Tailscale em modo <i>userspace</i> direto de uma pasta/USB e abre o navegador já apontado pra base. Ideal quando você não quer/pode instalar nada.</p>
+    <div class="grid">
+      <a class="btn2" href="connector/conectar.cmd" download>⬇️ conectar.cmd</a>
+      <a class="btn2" href="connector/desconectar.cmd" download>⬇️ desconectar.cmd</a>
+    </div>
+    <p class="note" style="margin-top:10px">Passo a passo e detalhes: <a href="connector/LEIA-ME.txt">connector/LEIA-ME.txt</a>. Baixe a pasta inteira do repositório para um USB, coloque os binários do Tailscale em <code>connector\bin\</code> e rode <code>conectar.cmd</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2>Como funciona</h2>
+    <pre>[ qualquer computador ]  --(Tailscale, privado/cifrado)-->  [ SUA BASE ]
+      navegador / conector                                   OWUI + Ollama + Kali
+                                                             (roda os modelos e as ferramentas)</pre>
+    <ul>
+      <li>A <b>base</b> (seu PC) hospeda o Open WebUI e faz o trabalho pesado; sobe sozinha no boot.</li>
+      <li>Esta página é só o <b>atalho/portal</b> — ela não guarda senhas nem expõe o lab.</li>
+      <li>O tráfego vai pela <b>tailnet privada</b> (ninguém de fora enxerga o serviço).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Segurança</h2>
+    <ul class="note">
+      <li>Mantido <b>tailnet-only</b> de propósito: o lab tem uma ferramenta que executa comandos na base, então <b>não</b> é exposto à internet aberta.</li>
+      <li>O login do Open WebUI continua sendo sua barreira de acesso — use senha forte.</li>
+      <li>Esta página não contém tokens, chaves nem endereços de rede sensíveis.</li>
+    </ul>
+  </div>
+
+  <footer>Portal pessoal de acesso ao lab • privado via Tailscale</footer>
+</div>
+
+<script>
+  // Sonda leve de conectividade: tenta carregar o favicon do OWUI (tailnet-only).
+  (function(){
+    var dot=document.getElementById('dot'), txt=document.getElementById('statusText');
+    var url="https://desktop-ucgr4k4.tailcd6345.ts.net/favicon.ico?_="+Date.now();
+    var done=false;
+    function set(state,msg){ if(done)return; done=true; dot.className="dot "+state; txt.textContent=msg; }
+    try{
+      var img=new Image();
+      img.onload=function(){ set('ok','Conectado à base — pode abrir o Open WebUI.'); };
+      img.onerror=function(){ set('err','Base não alcançável daqui — conecte este computador (seção abaixo).'); };
+      img.src=url;
+      setTimeout(function(){ set('err','Sem resposta da base — verifique a conexão Tailscale.'); }, 6000);
+    }catch(e){ set('err','Não foi possível verificar a conexão.'); }
+  })();
+</script>
+</body>
+</html>
