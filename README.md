@@ -15,3 +15,6 @@ ou usar o conector portátil em [`connector/`](connector/)).
 ## Conteúdo
 - `index.html` — o portal.
 - `connector/` — kit conector portátil (Tailscale userspace) + `LEIA-ME.txt`.
+- [`models/`](models/) — **configuração padrão dos modelos** (Modelfiles + `aplicar-modelos.sh`),
+  conforme a recomendação de cada autor. Fonte da verdade, reaplicável em qualquer máquina.
+  Ver [`models/MODELOS.md`](models/MODELOS.md).
